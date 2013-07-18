@@ -6,7 +6,7 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     meta(name='viewport', content='width=device-width,initial-scale=1')
   
-    title
+    titlehttp://localhost:3000/
       block title
       |  - #{appName}
 
@@ -14,21 +14,13 @@ html(lang='en')
   
     link(rel='icon', href='/img/favicon.ico', type='image/x-ico')
     link(rel='shortcut icon', href='/img/favicon.ico', type='image/vnd.microsoft.icon')
-
-    meta(property='fb:app_id', content='123456789')
-    meta(property='og:title', content='#{title}')
-    meta(property='og:description', content='Form5 Node.js skeleton that uses Express, Mongoose, Coffeescript, LESS css, Twitter bootstrap and more...')
-    meta(property='og:type', content='website')
-    meta(property='og:url', content='https://github.com/olafurnielsen/form5-node-express-mongoose-coffeescript')
-    meta(property='og:image', content='http://blog.getbootstrap.com/wp-content/themes/bootstrap-blog/img/bootstrap-blog-logo.png')
-    meta(property='og:site_name', content='Form5 Node.js skeleton')
-    meta(property='fb:admins', content='123456789')
         
 
     != css('vendor/bootstrap/css/bootstrap')
+    
+    != css('vendor/bootstrap/journal/bootswatch')
     != css('vendor/bootstrap/css/bootstrap-responsive')
     != css('style')
-    
     // if lte IE 9
       !css('style-ie9-lte')
 
@@ -36,7 +28,7 @@ html(lang='en')
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
     
   body
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar
       .navbar-inner
         .container
           button(type='button', class='btn btn-navbar', data-toggle='collapse', data-target='.nav-collapse')
@@ -44,18 +36,10 @@ html(lang='en')
             span.icon-bar
             span.icon-bar          
         
-          a.brand(href='/') Form5 Node.js Skeleton
+          a.brand(href='/') F5
           
           .nav-collapse.collapse
-          
-            if req.user
-              p.navbar-text.pull-right
-                | Welcome, #{req.user.name}
-                | | 
-                a(href='/logout') logout
-            else
-              p.navbar-text.pull-right
-                a(href='/login') Login
+
             ul.nav
               li
                 a(href='/') Home
@@ -65,6 +49,15 @@ html(lang='en')
                   a(href='/users/') Users
                 li
                   a(href='/articles/') Manage articles
+
+            if req.user
+              p.navbar-text.navbar-dashboard
+                | Welcome, #{req.user.name}
+                | | 
+                a(href='/logout') logout
+            else
+              p.navbar-text.navbar-dashboard
+                a(href='/login') Login
               
     .container
       block content
