@@ -1,5 +1,3 @@
-mongoose = require 'mongoose'
-
 #
 # Getters and setters for tags
 #

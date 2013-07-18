@@ -8,9 +8,11 @@ var express = require('express'),
     http = require('http'),
     fs = require('fs'),
     passport = require('passport'),
-    mongoose = require('mongoose'),
     coffee = require('coffee-script'),
     less = require('less')
+
+global.app = express()
+global.mongoose = require('mongoose')
 
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/environment')[env],
@@ -29,15 +31,15 @@ fs.readdirSync(models_path).forEach(function (file) {
 // bootstrap passport config
 require('./config/passport')(passport, config)
 
-var app = express()
+
 // express settings
-require('./config/express')(app, config, passport)
+require('./config/express')(config, passport)
 
 // Bootstrap routes
-require('./config/routes')(app, passport, auth)
+require('./config/routes')(passport, auth)
 
 // Helper funtions
-require('./app/helpers/general')(app)
+require('./app/helpers/general')()
 
 // Start the app by listening on <port>
 var port = process.env.PORT || 3000

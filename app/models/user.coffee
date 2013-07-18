@@ -1,4 +1,3 @@
-mongoose = require 'mongoose'
 bcrypt = require 'bcrypt'
 
 #
@@ -64,7 +63,8 @@ UserSchema.statics =
     .exec(cb)
     return
 
-User = mongoose.model 'User', UserSchema
+mongoose.model 'User', UserSchema
+app.User = mongoose.model 'User'
 
 ###
 user = new User

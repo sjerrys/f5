@@ -2,7 +2,7 @@
 #
 # Global template helpers
 #
-module.exports = (app) ->
+module.exports = ->
   
   #
   # Template function for Markdown rendering

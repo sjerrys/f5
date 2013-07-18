@@ -4,7 +4,7 @@ flash = require('connect-flash')
 helpers = require('view-helpers')
 path = require('path')
 
-module.exports = (app, config, passport) ->
+module.exports = (config, passport) ->
   app.set('showStackError', true)
 
   app.use(express.compress({
@@ -25,7 +25,8 @@ module.exports = (app, config, passport) ->
     app.use(express.methodOverride())
 
     app.use(express.session({
-      secret: 'p8zztgch48rehu79jskhm6aj3',
+      secret: 'p8zztgch48rehu79jskhm6aj3p8zztgch48rehu79jskhm6aj3p8zztgch48rehu79jskhm6aj3'
+      cookie:{path: '/', httpOnly: true, maxAge:new Date(Date.now() + 3600000000000)}
       store: new mongoStore({
         url: config.db,
         collection : 'sessions'
